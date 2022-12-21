@@ -1,3 +1,10 @@
+#!/bin/sh
 cd build
 cmake ..
 make
+
+if [ $1 = x ]
+   then
+      echo "running..."
+      exec ../build/cansat-groundst
+fi
