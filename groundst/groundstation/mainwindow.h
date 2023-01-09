@@ -5,6 +5,7 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QTimer>
+#include <QElapsedTimer>
 #include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
@@ -33,5 +34,9 @@ private:
     QTimer *mSerialScanTimer;
 
     void updateSerialPorts();
+
+    QElapsedTimer s_passed;
+    void updateTemp(double value);
+    void updatePres(double value);
 };
 #endif // MAINWINDOW_H

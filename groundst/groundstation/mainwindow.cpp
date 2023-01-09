@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mSerial, &QSerialPort::readyRead,
             this, &MainWindow::serialReadyRead);
 
+    // DECLARE TEMP CHART
+
+
 }
 
 MainWindow::~MainWindow()
@@ -30,12 +33,29 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateTemp(double value) {
+    QLineSeries *sr_temp = new QLineSeries();
+    sr_temp->append(s_passed.elapsed()  , value);
+
+    *sr_temp << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) << QPointF(20, 2);
+    QChart *ch_temp = new QChart();
+    ch_temp->legend()->hide();
+    ch_temp->addSeries(sr_temp);
+    ch_temp->createDefaultAxes();
+    ch_temp->setTitle("Temperature");
+    ui->chartTemp->setChart(ch_temp);
+    ui->chartTemp->setRenderHint(QPainter::Antialiasing);
+}
+void MainWindow::updatePres(double value) {
+
+}
+
 void MainWindow::updateSerialPorts()
 {
     mSerialPorts = QSerialPortInfo::availablePorts();
 
     ui->cbPorts->clear();
-    for (QSerialPortInfo port : mSerialPorts) {
+    for (const QSerialPortInfo &port : qAsConst(mSerialPorts)) {
         ui->cbPorts->addItem(port.portName(), port.systemLocation());
     }
 }
@@ -69,27 +89,25 @@ void MainWindow::on_btn_openSerialPort_clicked()
         msgBox.exec();
         mSerial->close();
     }
+
+    s_passed.start();
+
     ui->btn_openSerialPort->setEnabled(true);
 }
 
 void MainWindow::serialReadyRead()
 {
     QByteArray data = mSerial->readLine();
-    QString str = QString(data);
+    QString str = "23;45.43;67.23"; //QString(data);
     ui->tb_output->insertPlainText(str);
 
-//    QStringList values = str.split(';');
-//    ui->ln_rssi->display(values[0].toInt());
-//    ui->ln_kpa->display(values[1].toInt());
-//    ui->ln_atm->display(values[2].toInt());
-//    ui->ln_temp->display(values[3].toInt());
+
 }
 
 
 void MainWindow::on_btn_closePort_clicked()
 {
     ui->btn_closePort->setEnabled(false);
-    QString serialLoc = ui->cbPorts->currentData().toString();
 
     if (mSerial->isOpen()) {
         QMessageBox msgBox;
@@ -97,6 +115,15 @@ void MainWindow::on_btn_closePort_clicked()
         msgBox.setIcon(QMessageBox::Information);
         msgBox.exec();
         mSerial->close();
+    } else {
+        QString awsd = QString("-23;45.43;9812.23"); //QString(data);
+        QStringList values = awsd.split(";");
+        ui->ln_rssi->display(values[0] + "dBi");
+        ui->ln_temp->display(values[1]);
+        ui->ln_kpa->display(values[2].toDouble() / 1000);
+        ui->ln_atm->display(values[2].toDouble() / 101325);
+        updateTemp(values[1].toDouble());
+
     }
     ui->btn_closePort->setEnabled(true);
 }

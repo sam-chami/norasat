@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.2, 2023-01-08T23:04:16. -->
+<!-- Written by QtCreator 7.0.2, 2023-01-09T17:29:17. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -78,7 +78,9 @@
     <value type="bool" key="ClangTools.BuildBeforeAnalysis">true</value>
     <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
     <value type="int" key="ClangTools.ParallelJobs">8</value>
-    <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
+    <valuelist type="QVariantList" key="ClangTools.SelectedDirs">
+     <value type="QString">/home/samuel/Documents/code/cansat/groundst/groundstation/groundstation.pro</value>
+    </valuelist>
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
@@ -238,8 +240,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/samuel/Documents/code/cansat/groundstation/groundstation.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/samuel/Documents/code/cansat/groundstation/groundstation.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">groundstation2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/samuel/Documents/code/cansat/groundst/groundstation/groundstation.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/samuel/Documents/code/cansat/groundst/groundstation/groundstation.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
