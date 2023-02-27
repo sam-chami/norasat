@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "esp32cam")(type "KiCad")(uri "/home/samuel/Downloads/ESP32-CAM/ESP32-CAM.kicad_sym")(options "")(descr ""))
+)
